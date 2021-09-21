@@ -1,21 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Rotas from './Rotas/Rotas';
+import { Feather } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
+import Toast, { BaseToast } from 'react-native-toast-message';
+
+const toastConfig = { 
+  success: ({ text1, props, ...rest }) => (
+    <BaseToast
+      style={{borderLeftColor: '#0B8B00', backgroundColor: '#CACACA', marginBottom: 40 }}
+      contentContainerStyle={{ paddingHorizontal: 15 }}
+      contentContainer={
+        <Feather name="clock" size={24}/>
+      }
+      text1Style={{
+        fontSize: 15,
+        fontWeight: '400'
+      }}
+      text1={text1}
+    />
+  )
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Rotas />
+      <Toast config={toastConfig} ref={(ref) => Toast.setRef(ref)} />
+    </NavigationContainer>
+      
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
