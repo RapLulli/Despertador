@@ -34,6 +34,7 @@ export default function Rotas() {
             backgroundColor: '#CACACA',
             height: 60,
           },
+          // initialRouteName: 'Alarmes',
           tabBarShowLabel: false,
           headerShown: false,
           tabBarHideOnKeyboard: true,

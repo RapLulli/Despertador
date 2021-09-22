@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Text, Switch, StyleSheet } from 'react-native';
-import { Card, TimeNameView, TimeView, NameView, Time, Name, ViewWeek, TextWeek, ViewSwich, ViewDelete } from './styled';
+import { Text, View, Switch, StyleSheet } from 'react-native';
+import { Card, TimeNameView, Time, Name, ViewWeek, TextWeek, ViewSwich, ViewDelete } from './styled';
 import { Feather } from '@expo/vector-icons';
 
-export default function CardDespertador(dados) {
+export default function CardDespertador({ dados, setModalDel, setIdDeletar }) {
 
-    const [nome, setNome] = useState(dados.dados.item.nome);
+    const [nome, setNome] = useState(dados.item.nome);
 
     useEffect(() => {
         if (nome === '') {
-            setNome('Alarme ' + dados.dados.item.id);
+            setNome('Alarme ' + dados.item.id);
         }
     });
 
@@ -26,6 +26,11 @@ export default function CardDespertador(dados) {
     const [StatusDespertador, setStatusDespertador] = useState(true);
     const trocarStatusDespertador = () => setStatusDespertador(previousState => !previousState);
 
+    const Delete = () => {
+        setModalDel(true);
+        setIdDeletar(dados.item.id);
+    }
+
     return (
         <Card>
             <TimeNameView>
@@ -33,7 +38,7 @@ export default function CardDespertador(dados) {
                     {Intl.DateTimeFormat('pt-BR', {
                         hour: '2-digit',
                         minute: '2-digit'
-                    }).format(dados.dados.item.date)}
+                    }).format(dados.item.date)}
                 </Time>
 
                 <Name>
@@ -41,25 +46,25 @@ export default function CardDespertador(dados) {
                 </Name>
             </TimeNameView>
             <ViewWeek>
-                <TextWeek style={dados.dados.item.dom ? styles.ativo : styles.desativo}>
+                <TextWeek style={dados.item.dom ? styles.ativo : styles.desativo}>
                     D
                 </TextWeek >
-                <TextWeek style={dados.dados.item.seg ? styles.ativo : styles.desativo}>
+                <TextWeek style={dados.item.seg ? styles.ativo : styles.desativo}>
                     S
                 </TextWeek>
-                <TextWeek style={dados.dados.item.ter ? styles.ativo : styles.desativo}>
+                <TextWeek style={dados.item.ter ? styles.ativo : styles.desativo}>
                     T
                 </TextWeek>
-                <TextWeek style={dados.dados.item.qua ? styles.ativo : styles.desativo}>
+                <TextWeek style={dados.item.qua ? styles.ativo : styles.desativo}>
                     Q
                 </TextWeek>
-                <TextWeek style={dados.dados.item.qui ? styles.ativo : styles.desativo}>
+                <TextWeek style={dados.item.qui ? styles.ativo : styles.desativo}>
                     Q
                 </TextWeek>
-                <TextWeek style={dados.dados.item.sex ? styles.ativo : styles.desativo}>
+                <TextWeek style={dados.item.sex ? styles.ativo : styles.desativo}>
                     S
                 </TextWeek>
-                <TextWeek style={dados.dados.item.sab ? styles.ativo : styles.desativo}>
+                <TextWeek style={dados.item.sab ? styles.ativo : styles.desativo}>
                     S
                 </TextWeek>
             </ViewWeek>
@@ -72,8 +77,8 @@ export default function CardDespertador(dados) {
                     value={StatusDespertador}
                 />
             </ViewSwich>
-            <ViewDelete>
-                <Feather name="trash" size={24} color="white" />
+            <ViewDelete onPress={Delete}>
+                <Feather name="trash" size={28} color="#CD0000" />
             </ViewDelete>
 
         </Card>

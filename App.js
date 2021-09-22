@@ -15,7 +15,7 @@ const toastConfig = {
         <Feather name="clock" size={24}/>
       }
       text1Style={{
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: '400'
       }}
       text1={text1}

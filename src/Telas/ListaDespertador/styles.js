@@ -8,3 +8,57 @@ export const SafeAreaView = styled.SafeAreaView`
 export const ViewBottom = styled.View`
   margin-bottom: 80px;
 `;
+
+export const ViewModal = styled.View`
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50%;
+  background-color: #CD0000;
+  padding: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+`;
+
+export const TextModal1 = styled.Text`
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+export const ViewModal2 = styled.View`
+  align-items: center;
+  background-color: #CACACA;
+  padding: 20px;
+`;
+
+export const TextModal2 = styled.Text`
+  text-align: center;
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+export const ViewBot = styled.View`
+  flex-direction: row;
+  background-color: #CACACA;
+  padding: 10px;
+  justify-content: space-evenly;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+`;
+
+export const BootSim = styled.TouchableOpacity`
+  background-color: #0B8B00;
+  padding: 10px;
+  border-radius: 8px;
+`;
+
+export const BootNao = styled.TouchableOpacity`
+  background-color: #CD0000;
+  padding: 10px;
+  border-radius: 8px;
+`;
+
+export const TextBot = styled.Text`
+  font-size: 25px;
+`;
