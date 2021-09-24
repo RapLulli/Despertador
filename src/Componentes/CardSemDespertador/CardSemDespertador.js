@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewSemDespertador, TextSemDespertador } from './styled';
+import { ViewSemDespertador, TextSemDespertador } from './styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function CardSemDespertador(){

@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { StatusBar, FlatList, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StatusBar, FlatList, View, Text } from 'react-native';
 import { useScrollToTop } from '@react-navigation/native';
 import CardDespertador from '../../Componentes/CardDespertador/CardDespertador';
 import CardSemDespertador from '../../Componentes/CardSemDespertador/CardSemDespertador';
-import { SafeAreaView, ViewBottom, ViewModal, TextModal1, ViewModal2, TextModal2, ViewBot, TextBot, BootSim, BootNao } from './styles';
+import {
+  SafeAreaView, ViewBottom, ViewModal, TextModal1, ViewModal2, TextModal2,
+  ViewBot, TextBot, BootSim, BootNao, ViewDespertador
+} from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from "react-native-modal";
+import QuizMatematica from '../../Componentes/QuizMatematica/QuizMatematica';
+import QuizCores from '../../Componentes/QuizCores/QuizCores';
 
 export default function ListaDespertador() {
 
@@ -25,6 +30,7 @@ export default function ListaDespertador() {
 
   const deletarAlarme = () => {
     deletarItem(idDeletar);
+    setLigado(false);
     setModalDel(false);
     setIdDeletar(null);
   }
@@ -33,9 +39,57 @@ export default function ListaDespertador() {
     setModalDel(false);
   }
 
+  const [quizMat, setQuizMat] = useState(false);
+  const [quizCor, setQuizCor] = useState(false);
+  const [despertar, setDespertar] = useState(false);
+  const [ligado, setLigado] = useState(false);
+  const [disparada, setDisparada] = useState(false);
+
+  useEffect(()=>{
+    if(despertar === true && ligado === true){
+      setDisparada(true);
+    }
+  },[despertar, ligado])
+
+  const QuizCompleto = () => { setDespertar(false); setDisparada(false) };
+
+  const SortearQuiz = () => {
+
+    if (quizMat === true && quizCor === true) {
+      var quiz = Math.floor(Math.random() * 2) + 1;
+      if (quiz === 1) {
+        return (<QuizMatematica QuizCompleto={QuizCompleto} />);
+      } else { return (<QuizCores QuizCompleto={QuizCompleto} />); }
+    }
+
+    if (quizMat === true && quizCor === false) {
+      return (
+        <QuizMatematica QuizCompleto={QuizCompleto} />
+      );
+    }
+
+    if (quizMat === false && quizCor === true) {
+      return (
+        <QuizCores QuizCompleto={QuizCompleto} />
+      );
+    }
+  }
+
   return (
     <SafeAreaView>
       <StatusBar />
+
+      <View>
+        <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+          <Modal isVisible={disparada}>
+            <View style={{ flex: 1 }}>
+              <ViewDespertador>
+                {SortearQuiz()}
+              </ViewDespertador>
+            </View>
+          </Modal>
+        </View>
+      </View>
 
       <View>
         <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
@@ -71,6 +125,10 @@ export default function ListaDespertador() {
               dados={despertadores}
               setModalDel={setModalDel}
               setIdDeletar={setIdDeletar}
+              setDespertar={setDespertar}
+              setQuizMat={setQuizMat}
+              setQuizCor={setQuizCor}
+              setLigado={setLigado}
             />
           )}
         />

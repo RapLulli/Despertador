@@ -26,6 +26,7 @@ export default function Rotas() {
   return (
     <Provider store={store}>
       <Tab.Navigator
+        initialRouteName="Alarmes"
         screenOptions={{
           tabBarStyle: {
             position: 'absolute',
@@ -34,7 +35,6 @@ export default function Rotas() {
             backgroundColor: '#CACACA',
             height: 60,
           },
-          // initialRouteName: 'Alarmes',
           tabBarShowLabel: false,
           headerShown: false,
           tabBarHideOnKeyboard: true,

@@ -62,3 +62,15 @@ export const BootNao = styled.TouchableOpacity`
 export const TextBot = styled.Text`
   font-size: 25px;
 `;
+
+export const ViewDespertador = styled.View`
+  flex-direction: column;
+  margin: 0px;
+  padding-top: 15px;
+  padding-bottom: 50px;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;
+  background-color: #CACACA;
+  border-radius: 15px;
+`;
