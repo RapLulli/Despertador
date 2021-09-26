@@ -25,8 +25,8 @@ export const ViewDesafio = styled.View`
 `;
 
 export const TextDesafio = styled.Text`
-    padding: 20px;
-    padding-bottom: 0px;
+    padding: 10px;
+    padding-bottom: 20px;
     text-align: center;
     font-size: 31px;
     font-weight: bold;
@@ -35,10 +35,14 @@ export const TextDesafio = styled.Text`
 
 export const TextCor = styled.Text`
     text-align: center;
-    padding: 0px;
-    padding-bottom: 20px;
+    padding: 5px;
+    padding-bottom: 5px;
     font-size: 40px;
     font-weight: bold;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-bottom: 20px;
+    border-radius: 10px;
 `;
 
 export const ViewBotoes = styled.View`

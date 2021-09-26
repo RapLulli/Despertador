@@ -9,17 +9,14 @@ export default function QuizCores({ QuizCompleto }) {
     const cores = ['Verde', 'Amarelo', 'Vermelho', 'Roxo', 'Azul', 'Rosa', 'Preto', 'Laranja', 'Marrom'];
 
     const [cor, setCor] = useState(Math.floor(Math.random() * 9));
-    
+
     const Carregar = () => {
         setCor(Math.floor(Math.random() * 9));
     }
-    
-    setTimeout(()=>{
-        Carregar();
-    },5000)
 
     const randomColor = require('randomcolor');
-    const color = randomColor({ luminosity: 'dark' });
+    const color = randomColor({ luminosity: 'light' });
+    const back = randomColor({ luminosity: 'dark' });
 
     return (
         <View>
@@ -32,7 +29,10 @@ export default function QuizCores({ QuizCompleto }) {
                 <TextDesafio>
                     Clique na cor de nome:
                 </TextDesafio>
-                <TextCor style={{ color: color }}>
+                <TextCor style={{
+                    color: color,
+                    backgroundColor: back,
+                }}>
                     {cores[cor]}
                 </TextCor>
             </ViewDesafio>

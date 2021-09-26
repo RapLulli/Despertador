@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, FlatList, View, Text } from 'react-native';
+import { StatusBar, FlatList, View, Vibration } from 'react-native';
 import { useScrollToTop } from '@react-navigation/native';
 import CardDespertador from '../../Componentes/CardDespertador/CardDespertador';
 import CardSemDespertador from '../../Componentes/CardSemDespertador/CardSemDespertador';
@@ -11,8 +11,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import Modal from "react-native-modal";
 import QuizMatematica from '../../Componentes/QuizMatematica/QuizMatematica';
 import QuizCores from '../../Componentes/QuizCores/QuizCores';
+import { Audio } from 'expo-av';
 
 export default function ListaDespertador() {
+
+  const [sound, setSound] = useState();
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require('../../../assets/Alarm.mp3')
+    );
+    setSound(sound);
+
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+        sound.unloadAsync();
+      }
+      : undefined;
+  }, [sound]);
 
   const ref = React.useRef(null);
   useScrollToTop(ref);
@@ -45,11 +65,17 @@ export default function ListaDespertador() {
   const [ligado, setLigado] = useState(false);
   const [disparada, setDisparada] = useState(false);
 
-  useEffect(()=>{
-    if(despertar === true && ligado === true){
+  useEffect(() => {
+    if (despertar === true && ligado === true) {
       setDisparada(true);
+      playSound();
+      Vibration.vibrate(500, true);
+    } else {
+      setSound();
+      Vibration.cancel();
     }
-  },[despertar, ligado])
+
+  }, [despertar, ligado])
 
   const QuizCompleto = () => { setDespertar(false); setDisparada(false) };
 
