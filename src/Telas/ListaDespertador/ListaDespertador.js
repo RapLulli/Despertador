@@ -12,6 +12,7 @@ import Modal from "react-native-modal";
 import QuizMatematica from '../../Componentes/QuizMatematica/QuizMatematica';
 import QuizCores from '../../Componentes/QuizCores/QuizCores';
 import { Audio } from 'expo-av';
+import Toast from 'react-native-toast-message';
 
 export default function ListaDespertador() {
 
@@ -53,6 +54,12 @@ export default function ListaDespertador() {
     setLigado(false);
     setModalDel(false);
     setIdDeletar(null);
+    Toast.show({
+      type: 'success',
+      position: 'bottom',
+      text1: 'Alarme deletado!',
+      visibilityTime: 800,
+    });
   }
 
   const naoDeletarAlarme = () => {

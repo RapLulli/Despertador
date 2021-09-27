@@ -7,8 +7,8 @@ import {
 
 export default function QuizMatematica({ QuizCompleto }) {
 
-    const [num1, setNum1] = useState(Math.floor(Math.random() * 5) + 3);
-    const [num2, setNum2] = useState(Math.floor(Math.random() * 5) + 3);
+    const [num1, setNum1] = useState(Math.floor(Math.random() * 3) + 3);
+    const [num2, setNum2] = useState(Math.floor(Math.random() * 3) + 3);
     const [num3, setNum3] = useState(Math.floor(Math.random() * 50) + 3);
     const [resp, setResp] = useState((num1 * num2) + num3);
 
